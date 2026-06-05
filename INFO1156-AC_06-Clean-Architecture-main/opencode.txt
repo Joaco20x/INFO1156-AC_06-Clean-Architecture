@@ -1,0 +1,66 @@
+Lo que debes hacer:
+
+Revisar cómo está estructurado actualmente el proyecto dentro de src/ y listar todas las carpetas y archivos existentes.
+Sin borrar ni modificar nada del código original, agregar la siguiente estructura de carpetas nueva dentro de src/:
+
+src/
+├── domain/
+│   ├── entities/
+│   ├── repositories/
+│   └── errors/
+├── application/
+│   └── use-cases/
+├── infrastructure/
+│   ├── database/
+│   └── repositories/
+└── presentation/
+    ├── controllers/
+    └── routes/
+
+Dentro de cada carpeta nueva crear un archivo index.ts vacío como barrel file.
+
+
+
+#nuevas instrucciones
+Crear domain/repositories/BaseRepository.ts con una interfaz genérica:
+
+tsexport interface BaseRepository<T> {
+  findById(id: string): Promise<T | null>;
+  findAll(): Promise<T[]>;
+  save(entity: T): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+Crear application/use-cases/UseCase.ts con una interfaz base:
+
+tsexport interface UseCase<Input, Output> {
+  execute(input: Input): Promise<Output>;
+}
+
+
+
+#nuevas instrucciones 2
+
+
+Crear los siguientes archivos de errores del dominio:
+
+ts// domain/errors/DomainError.ts
+export class DomainError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'DomainError';
+  }
+}
+ts// domain/errors/NotFoundError.ts
+import { DomainError } from './DomainError';
+export class NotFoundError extends DomainError {
+  constructor(entity: string, id: string) {
+    super(`${entity} with id ${id} not found`);
+    this.name = 'NotFoundError';
+  }
+}
+
+Crear infrastructure/dependencies.ts vacío con solo un comentario indicando que aquí se registrarán las instancias más adelante:
+
+ts// Aquí se registrarán los repositorios y casos de uso
+export {};
