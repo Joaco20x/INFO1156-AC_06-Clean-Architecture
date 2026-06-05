@@ -1,5 +1,5 @@
-export type { PostRepository } from './PostRepository';
-export type { CommentRepository } from './CommentRepository';
-export type { LikeRepository } from './LikeRepository';
-export type { CategoryRepository } from './CategoryRepository';
-export type { ProhibitedWordRepository } from './ProhibitedWordRepository';
+export type { PostRepository } from "./PostRepository"
+export type { CommentRepository } from "./CommentRepository"
+export type { LikeRepository } from "./LikeRepository"
+export type { CategoryRepository } from "./CategoryRepository"
+export type { ProhibitedWordRepository } from "./ProhibitedWordRepository"

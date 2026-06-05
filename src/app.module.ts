@@ -1,19 +1,26 @@
 import { Module } from "@nestjs/common"
-import { CategoriesModule } from "@/categories/categories.module"
-import { CommentsModule } from "@/comments/comments.module"
-import { LikesModule } from "@/likes/likes.module"
-import { ModerationModule } from "@/moderation/moderation.module"
-import { PostsModule } from "@/posts/posts.module"
+import { APP_FILTER } from "@nestjs/core"
+
 import { PrismaModule } from "@/shared/prisma.module"
+import { DomainExceptionFilter } from "@/presentation/filters"
+import {
+    CategoriesRoutesModule,
+    ModerationRoutesModule,
+    PostsRoutesModule,
+} from "@/presentation/routes"
 
 @Module({
     imports: [
         PrismaModule,
-        CategoriesModule,
-        PostsModule,
-        CommentsModule,
-        LikesModule,
-        ModerationModule,
+        PostsRoutesModule,
+        CategoriesRoutesModule,
+        ModerationRoutesModule,
+    ],
+    providers: [
+        {
+            provide: APP_FILTER,
+            useClass: DomainExceptionFilter,
+        },
     ],
 })
 export class AppModule {}

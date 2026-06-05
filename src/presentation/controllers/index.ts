@@ -1,0 +1,5 @@
+export { PostsController } from "./PostsController"
+export { CommentsController } from "./CommentsController"
+export { LikesController } from "./LikesController"
+export { CategoriesController } from "./CategoriesController"
+export { ModerationController } from "./ModerationController"

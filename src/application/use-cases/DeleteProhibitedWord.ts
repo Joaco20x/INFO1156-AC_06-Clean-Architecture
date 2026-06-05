@@ -1,14 +1,19 @@
-import type { ProhibitedWordRepository } from '@/domain/repositories';
-import type { UseCase } from './UseCase';
+import type { ProhibitedWordRepository } from "@/domain/repositories"
+import type { UseCase } from "./UseCase"
 
 interface DeleteProhibitedWordInput {
-  id: string;
+    id: string
 }
 
-export class DeleteProhibitedWord implements UseCase<DeleteProhibitedWordInput, void> {
-  constructor(private readonly prohibitedWordRepository: ProhibitedWordRepository) {}
+export class DeleteProhibitedWord implements UseCase<
+    DeleteProhibitedWordInput,
+    void
+> {
+    constructor(
+        private readonly prohibitedWordRepository: ProhibitedWordRepository,
+    ) {}
 
-  async execute({ id }: DeleteProhibitedWordInput): Promise<void> {
-    return this.prohibitedWordRepository.delete(id);
-  }
+    async execute({ id }: DeleteProhibitedWordInput): Promise<void> {
+        return this.prohibitedWordRepository.delete(id)
+    }
 }
